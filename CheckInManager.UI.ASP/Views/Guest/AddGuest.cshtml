@@ -1,0 +1,566 @@
+﻿@model CheckInManager.UI.ASP.Models.GuestEvent
+
+@{
+    Layout = null;
+    var weekday = DateTime.Now.DayOfWeek;
+    var year = DateTime.Now.Year;
+    var month = DateTime.Now.Month;
+    var day = DateTime.Now.Day;
+    var hour = DateTime.Now.Hour;
+    var min = DateTime.Now.Minute;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap core CSS-->
+    <link href="https://fonts.googleapis.com/css?family=Dosis:300|Lato:300|Open+Sans:300|Raleway:300|Source+Sans+Pro:300" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/CheckInSite.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo:300|Open+Sans|Lato:300|Raleway:300|Work+Sans:300|Yanone+Kaffeesatz:300">
+    <link href='tabulous.css' rel='stylesheet' type='text/css'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Content/js/checkinmanager.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.easing.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+
+
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('time').innerHTML =
+                h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
+    <style>
+        section {
+            background-color: white;
+        }
+
+        .tabcontent {
+            height: 400px;
+        }
+
+        a.pagination-link {
+            width: 10px;
+            cursor: pointer;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        ul, li {
+            display: inline-block;
+        }
+
+        .circle {
+            margin: 10px 10px 10px 10px;
+            display: inline-block;
+            background: lightgray;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .relative {
+            position: relative;
+            top: 100px;
+        }
+
+        .submitbutton {
+            height: 100px;
+            width: 200px;
+        }
+
+        .submittext {
+            font-size: 35px;
+        }
+
+        .submiticon {
+            font-size: 30px;
+            padding-top: 8px;
+            padding-right:10px;
+        }
+
+        div.column {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body onload="startTime(), window.scroll(0,60)">
+    @using (Html.BeginForm("AddGuest", "Guest", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Guest.EventID)
+        <nav class="navbar navbar-collapse navbar-light box-nav">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <h6> @weekday <br /> @month/@day/@year</h6>
+
+            <h6 id="time"></h6>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mt-auto">
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="@Url.Action("Create","Event")">Create New Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Dashboard","Dashboard")">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Logout","Login")">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!--HERO SECTION-->
+        <section class="hero is-fullheight is-info is-bold" id="herosection">
+            <div class="hero-head">&nbsp;</div>
+            <div class="hero-body has-text-centered">
+                <div class="container">
+                    <h1 class="title has-text-centered is-size-1-mobile" style="font-family:'Raleway', sans-serif;">
+                        Check-in
+                    </h1>
+                    <br />
+                    <h3 class="subtitle pagestart" id="headerbuttons">
+                        <span class="icon is-large is-size-7-mobile"><i class="fas fa-arrow-down fa-3x"></i></span><br />
+                        <a class="button is-success is-large is-size-5-mobile start" id="startbutton" onclick="start();">Start</a>
+                    </h3>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $("#startbutton").click(function () {
+                        $("#herosection").addClass("hide");
+                    });
+                });
+            </script>
+            <script>
+                $(document).ready(function () {
+                    $("#startbutton").click(function () {
+                        $("#headerbuttons").removeClass("pagestart").addClass("hide");
+                    });
+                });
+            </script>
+            <script>
+                $(document).ready(function () {
+                    $("#startbutton").click(function () {
+                        $("#mainsection").removeClass("hide").addClass("show");
+                    });
+                });
+            </script>
+            <div class="hero-footer">&nbsp;</div>
+        </section>
+
+        <!-- MAIN SECTION-->
+        <section class="section is-12 hide" id="mainsection">
+            <div class="container">
+
+                <!-- Gender -->
+                <div id="Gender" class="tabcontent">
+                    <br />
+                    <div class="columns has-text-centered">
+                        <div class="column">
+                            <span><img src="~/images/gendericon.svg" style="width:48px; height:48px;" /></span>
+                        </div>
+                    </div>
+                    <div class="form-group radio-group">
+                        <div class="columns has-text-centered">
+                            <div class="column"></div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <h3><br />Male</h3>
+                                <div class='radio' id="male" data-value="Male" onclick="openTab('Age', this, 'limegreen'), document.getElementById('myAge').click();">
+                                    <img src="/images/man.svg" id="icons" />
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <h3><br />Female</h3>
+                                <div class='radio' id="female" data-value="Female" onclick="openTab('Age', this, 'limegreen'), document.getElementById('myAge').click();">
+                                    <img src="/images/woman.svg" id="icons" />
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class="hidden">
+                                    @Html.EditorFor(model => model.Guest.Gender, new { htmlAttributes = new { @type = "text", @name = "Gender", @id = "input-Gender" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- AGE -->
+                <div id="Age" class="tabcontent">
+                    <br />
+                    <div class="columns has-text-centered">
+                        <div class="column">
+                            <span><img src="~/images/ecology.svg" style="width:48px; height:48px;" /></span>
+                        </div>
+                    </div>
+                    <div class="form-group radio-group">
+                        <div class="columns has-text-centered">
+                            <div class="column"></div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <h3><br />Child</h3>
+                                <div class='radio' id="child" data-value="Child" onclick="openTab('Ethnicity', this, 'limegreen'), document.getElementById('myEthnicity').click(), slideLeft();">
+                                    <img src="/images/child.svg" id="icons" />
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <h3><br />Adult</h3>
+                                <div class='radio' id="adult" data-value="Adult" onclick="openTab('Ethnicity', this, 'limegreen'), document.getElementById('myEthnicity').click();">
+                                    <img src="/images/adult.svg" id="icons" />
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <h3><br />Senior</h3>
+                                <div class='radio' id="senior" data-value="Senior" onclick="openTab('Ethnicity', this, 'limegreen'), document.getElementById('myEthnicity').click();">
+                                    <img src="/images/senior.svg" id="icons" />
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class="hidden">
+                                    @Html.EditorFor(model => model.Guest.AgeGroup, new { htmlAttributes = new { @type = "text", @name = "AgeGroup", @id = "input-Age" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Ethnicity -->
+                <div id="Ethnicity" class="tabcontent">
+                    <br />
+                    <div class="columns has-text-centered">
+                        <div class="column">
+                            <span><img src="~/images/streetview.svg" style="width:48px; height:48px;" /></span>
+                        </div>
+                    </div>
+                    <div class="form-group radio-group">
+                        <div class="columns has-text-centered">
+                            <div class="column"></div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="nativeamerican" data-value="NativeAm" onclick="openTab('City', this, 'limegreen'), document.getElementById('myCity').click();">
+                                    <img src="/images/nativeamerican.svg" id="icons" />
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class='radio' id="latino" data-value="Hispanic" onclick="openTab('City', this, 'limegreen'), document.getElementById('myCity').click();">
+                                            <img src="/images/latino.svg" id="icons" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="africanamerican" data-value="AfricanAm" onclick="openTab('City', this, 'limegreen'), document.getElementById('myCity').click();">
+                                    <img src="/images/africanamerican.svg" id="icons" />
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class='radio' id="white" data-value="White" onclick="openTab('City', this, 'limegreen'), document.getElementById('myCity').click();">
+                                            <img src="/images/white.svg" id="icons" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="asianamerican" data-value="AsianAm" onclick="openTab('City', this, 'limegreen'), document.getElementById('myCity').click();">
+                                    <img src="/images/asianamerican.svg" id="icons" />
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class='radio' id="other" data-value="Unspecified" onclick="openTab('City', this, 'limegreen'), document.getElementById('myCity').click();">
+                                            <img src="/images/other.svg" id="icons" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class="hidden">
+                                    @Html.EditorFor(model => model.Guest.Ethnicity, new { htmlAttributes = new { @type = "text", @name = "Ethnicity", @id = "input-Ethnicity" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- City -->
+                <div id="City" class="tabcontent">
+                    <br />
+                    <div class="columns has-text-centered">
+                        <div class="column">
+                            <span><img src="~/images/placeholder.svg" style="width:48px; height:48px;" /></span>
+                        </div>
+                    </div>
+                    <div class="form-group radio-group">
+                        <div class="columns has-text-centered">
+                            <div class="column"></div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="appleton" data-value="Appleton" onclick="openTab('Repeat', this, 'limegreen'), document.getElementById('myRepeat').click();">
+                                    <img src="/images/appleton2.svg" id="icons" />
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class='radio' id="littlechute" data-value="LtChute" onclick="openTab('Repeat', this, 'limegreen'), document.getElementById('myRepeat').click();">
+                                            <img src="/images/littlechute2.svg" id="icons" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="neenah" data-value="Neenah" onclick="openTab('Repeat', this, 'limegreen'), document.getElementById('myRepeat').click();">
+                                    <img src="/images/neenah2.svg" id="icons" />
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class='radio' id="kaukauna" data-value="Kaukauna" onclick="openTab('Repeat', this, 'limegreen'), document.getElementById('myRepeat').click();">
+                                            <img src="/images/kaukauna2.svg" id="icons" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="menasha" data-value="Menasha" onclick="openTab('Repeat', this, 'limegreen'), document.getElementById('myRepeat').click();">
+                                    <img src="/images/menasha2.svg" id="icons" />
+                                </div>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class='radio' id="other" data-value="Other" onclick="openTab('Repeat', this, 'limegreen'), document.getElementById('myRepeat').click();">
+                                            <img src="/images/othercity2.svg" id="icons" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class="hidden">
+                                    @Html.EditorFor(model => model.Guest.City, new { htmlAttributes = new { @type = "text", @name = "City", @id = "input-City" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Repeat Guest -->
+                <div id="Repeat" class="tabcontent">
+                    <br />
+                    <div class="columns has-text-centered">
+                        <div class="column">
+                            <h2>Have you been here before?</h2>
+                        </div>
+                    </div>
+                    <div class="form-group radio-group">
+                        <div class="columns has-text-centered">
+                            <div class="column"><br /></div>
+                        </div>
+                        <div class="columns has-text-centered">
+                            <div class="column"><br /></div>
+                        </div>
+                        <div class="columns has-text-centered">
+                            <div class="column"></div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="yes" data-value="1" onclick="openTab('Finish', this, 'limegreen'), document.getElementById('myFinish').click();">
+                                    <img src="/images/yes2.svg" id="icons" />
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class='radio' id="no" data-value="0" onclick="openTab('Finish', this, 'limegreen'), document.getElementById('myFinish').click();">
+                                    <img src="~/images/nine3.svg" id="icons" />
+                                </div>
+                            </div>
+                            <div class="column"></div>
+                            <div class="column">
+                                <div class="hidden">
+                                    @Html.EditorFor(model => model.Guest.RepeatVisitor, new { htmlAttributes = new { @type = "text", @name = "RepeatVisitor", @id = "input-Repeat" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Check in -->
+                <div id="Finish" class="tabcontent">
+                    <br />
+                    <div class="form-group radio-group">
+                        <div class="columns has-text-centered">
+                            <div class="column" style="height:400px;">
+                                <div class="form-group">
+                                    <button type="submit" style="margin-top:10%;" class="button is-success submitbutton" onclick="return confirm('Are you sure you want to submit?')">
+                                        <span class="submittext">Check-in &nbsp;</span>
+                                        <span class="icon is-inverted submiticon"><i class="fas fa-check-square"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section>
+    }
+
+    <!-- Tabbed Pages -->
+    <section class="is-hidden-mobile">
+        <div class="columns has-text-centered">
+            <div class="column">
+                <ul>
+                    <li>
+                        <div class="circle" id="myGender" onclick="pagination('Gender', this, '#845EC2')"></div>
+                    </li>
+                    <li>
+                        <div class="circle" id="myAge" onclick="pagination('Age', this, '#D65DB1')"></div>
+                    </li>
+                    <li>
+                        <div class="circle" id="myEthnicity" onclick="pagination('Ethnicity', this, '#FF6F91')"></div>
+                    </li>
+                    <li>
+                        <div class="circle" id="myCity" onclick="pagination('City', this, '#FF9671')"></div>
+                    </li>
+                    <li>
+                        <div class="circle" id="myRepeat" onclick="pagination('Repeat', this, '#FFC75F')"></div>
+                    </li>
+                    <li>
+                        <div class="circle" id="myFinish" onclick="pagination('Finish', this, '#F9F871')"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            // Opens 'Gender' on pageload
+            document.getElementById("myGender").click();
+            //Auto-opens next tab when option is clicked
+            function pagination(tabName, elmnt, color) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("circle");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.backgroundColor = "lightgrey";
+                }
+                document.getElementById(tabName).style.display = "block";
+                elmnt.style.backgroundColor = color;
+            }
+        </script>
+
+        <script>
+            function slideLeft() {
+                var tabcontent = document.getElementsByClassName("tabcontent");
+                element.animate({ right: '300px' }, "fast");
+            };
+        </script>
+    </section>
+
+
+
+
+
+    <p class="text-danger">@ViewBag.Error</p>  @* added to show any caught errors *@
+
+
+
+    <script>
+        // Opens 'Gender' on pageload
+        document.getElementById("myGender").click();
+
+        //Auto-opens next tab when option is clicked
+        function openTab(tabName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("circle");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "lightgrey";
+            }
+            document.getElementById(tabName).style.display = "block";
+            elmnt.style.borderColor = color;
+        }
+    </script>
+
+    <script>
+        var i, tabcontent;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].animate({ right: '100%' });
+        }
+    </script>
+
+    <script>
+        $('.radio-group .radio').click(function () {
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+            var val = $(this).attr('data-value');
+            //alert(val);
+            $(this).parentsUntil('.form-group').find('input').val(val);
+        });
+    </script>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</body>
+</html>

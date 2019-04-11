@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CheckInManager.BL.CEvents>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p class="text-danger">@ViewBag.Error</p>
+<div class="container">
+    <div class="columns">
+        <div class="column">
+            <h2>Events</h2>
+            <p>
+                @Html.ActionLink("Create Event", "Create", "Event", new { @class = "button is-primary is-small" })
+            </p>
+        </div>
+    </div>
+
+
+
+    <table class="table responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SiteName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EventID })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

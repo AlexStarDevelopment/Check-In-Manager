@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="BackEnd.master.cs" Inherits="CheckInManager.BackEndUI.BackEnd" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>BackEnd Data Entry System</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+            height: 673px;
+        }
+        .auto-style2 {
+            width: 100%;
+            height: 100%;
+        }
+        .auto-style3 {
+            height: 32px;
+        }
+        .auto-style4 {
+            height: 287px;
+        }
+        .auto-style5 {
+            width: 248px;
+        }
+        .auto-style6 {
+            height: 22px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            
+        </div>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style3" style="background-color: #003399; color: #FFFFFF;"><strong>BackEnd Data Entry System</strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style4">
+                    <table class="auto-style2">
+                        <tr>
+                            <td class="auto-style5" style="text-align: center; vertical-align: top; background-color: #99CCFF;"><strong>Navigation</strong>
+                                <ul>
+                                    <li><a href="GuestData.aspx">Guest Data</a> </li>
+                                </ul>
+                            </td>
+                            <td style="background-color: #CCCCCC; vertical-align: top;">
+                                <asp:ContentPlaceHolder ID="FormData" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style6" style="background-color: #003399; color: #FFFFFF;">Edit as Needed...</td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

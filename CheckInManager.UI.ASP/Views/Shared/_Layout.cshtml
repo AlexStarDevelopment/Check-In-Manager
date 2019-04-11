@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:300|Lato:300|Open+Sans:300|Raleway:300|Source+Sans+Pro:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:300|Lato:300|Open+Sans:300|Raleway:300|Source+Sans+Pro:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/vendors/fontawesome/css/font-awesome.min.css">
+    <!-- Simple Line Font -->
+    <link rel="stylesheet" href="~/Content/vendors/simple-line-icons/css/simple-line-icons.css">
+    <!-- Pe-icon Font -->
+    <link rel="stylesheet" href="~/Content/vendors/pe-icon/css/helper.css">
+    <link rel="stylesheet" href="~/Content/vendors/pe-icon/css/pe-icon-7-stroke.css">
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <link rel="stylesheet" href="~/Content/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="~/Content/js/jquery/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/js/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/Content/js/chart.js/Chart.min.js"></script>
+    <script src="~/Content/js/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/js/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/Content/js/sb-admin.min.js"></script>
+    <script src="~/Content/js/admin.min.js"></script>
+    <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+    <script src="~/Content/js/sb-admin-charts.min.js"></script>
+    <style>
+        /*html {
+            background-color: white;
+        }*/
+        footer {
+            background-color: #EFE8F0;
+            text-align: center;
+            max-height: 100px;
+        }
+
+        .fa-dashboard {
+            color: black;
+        }
+
+        .content-wrapper {
+            padding: 0 160px 0 160px;
+        }
+
+        #share-buttons img {
+            width: 35px;
+            padding: 5px;
+            border: 0;
+            box-shadow: 0;
+            display: inline;
+            outline: none;
+        }
+
+        a.sharebuttons {
+            text-decoration: none;
+        }
+
+        a.nav-link {
+            font-family: Raleway, sans-serif;
+        }
+
+            a.nav-link:hover {
+                color: hsl(171, 100%, 41%);
+                box-shadow: inset 0 -5px 0 white, inset 0 -7px 0 hsl(171, 100%, 41%);
+                background-color: transparent;
+            }
+
+        .level {
+            padding: 0;
+        }
+    </style>
+</head>
+
+
+<body id="page-top" class="has-navbar-fixed-bottom">
+    <!-- NAVIGATION -->
+    <!-- Nav Menu -->
+    <div class="level">
+        <div class="container-fluid" style="margin:0; padding:0;">
+            <nav class="navbar navbar-expand-lg navbar-light" role="navigation" aria-label="main-navigation">
+                <div class="level-left"><a href="@Url.Action("Index","Home")"><img src="~/images/logo3.svg" style="width:20px; height:auto; padding:0; margin:0;"></a><a href="@Url.Action("Index","Home")" style="font-family: 'Raleway', sans-serif; font-size:14px; line-height:20px;">&nbsp;Check-in Manager</a></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"> <a class="nav-link navbar-item" href="@Url.Action("Dashboard","Dashboard")" style="padding:5px 0; line-height:28px; font-size:13px;">HOME </a> </li>
+                        <li class="nav-item"> <a class="nav-link navbar-item" href="@Url.Action("Index","Event")" style="padding:5px 0; line-height:28px; font-size:13px;">EVENTS</a> </li>
+                        <li class="nav-item"> <a class="nav-link navbar-item" href="@Url.Action("index","employee")" style="padding:5px 0; line-height:28px; font-size:13px;">EMPLOYEES</a> </li>
+                        <li class="nav-item"> <a class="nav-link navbar-item" href="@Url.Action("Index","Site")" style="padding:5px 0; line-height:28px; font-size:13px;">LOCATIONS</a> </li>
+                        <li class="nav-item"> <a class="nav-link navbar-item" href="@Url.Action("Index","History")" style="padding:5px 0; line-height:28px; font-size:13px;">HISTORY</a> </li>
+                        <li class="nav-item"> <a class="nav-link navbar-item" style="padding:5px 0; line-height:28px; font-size:13px; color:hsl(171, 100%, 41%); font-weight:bold;" href="@Url.Action("Login", "Login")"><i class="fas fa-user"></i>&nbsp;LOGIN</a> </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        function navbarBurgerToggle(x) {
+            x.classList.toggle("change");
+        }
+    </script>
+    <script>
+        function toggleNavItems() {
+            document.getElementById("navbar-menu").classList.toggle("show");
+        }
+    </script>
+
+    <div class="bodyContainer">
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        <footer class="footer" style="background-color:#EFE8F0;">
+            <div class="container-fluid" style="max-height:400px;">
+                
+                <div class="content has-text-center">
+                    <p>&copy; @DateTime.Now.Year | Check-In Manager</p>
+                    <a href="@Url.Action("Index", "Sitemap")" class="has-text-primary">Sitemap</a>
+                </div>
+
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+
+        @RenderSection("scripts", required: false)
+
+        @*Scroll to Top Button
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fa fa-angle-up"></i>
+            </a>*@
+        <!-- Logout Modal-->
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <!--<a class="btn btn-primary" href="login.html">Logout</a>-->
+                        @Html.ActionLink("Logout", "Logout", "Login")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="~/Scripts/jquery.easing.min.js"></script>
+        <script src="~/Content/js/dataTables.bootstrap4.js"></script>
+        <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+        <script src="~/Content/js/Chart.min.js"></script>
+        <!-- Custom scripts for all pages-->
+
+        <script src="~/Scripts/sb-admin.min.js"></script>
+        <script src="~/Scripts/sb-admin-charts.min.js"></script>
+        <script src="~/Content/js/datepicker.js"></script>
+    </div>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/Chart")
+</body>
+</html>

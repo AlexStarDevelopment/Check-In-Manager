@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LFGuestSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HistoricalData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Meals" Type="int" />
+          <Property Name="Guests" Type="int" />
+          <Property Name="Male" Type="int" />
+          <Property Name="Female" Type="int" />
+          <Property Name="Children" Type="int" />
+          <Property Name="Seniors" Type="int" />
+          <Property Name="NativeAm" Type="int" />
+          <Property Name="Hispanic" Type="int" />
+          <Property Name="AfricanAm" Type="int" />
+          <Property Name="White" Type="int" />
+          <Property Name="AsianAm" Type="int" />
+          <Property Name="Unspecified" Type="int" />
+          <Property Name="Appleton" Type="int" />
+          <Property Name="Menasha" Type="int" />
+          <Property Name="Kimberly" Type="int" />
+          <Property Name="Kaukauna" Type="int" />
+          <Property Name="LtChute" Type="int" />
+          <Property Name="Neenah" Type="int" />
+          <Property Name="Other" Type="int" />
+          <Property Name="Weather" Type="varchar" MaxLength="256" />
+          <Property Name="Adult" Type="int" />
+          <Property Name="Temp_F" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="SiteID" Type="int" />
+          <Property Name="Comments" Type="varchar" MaxLength="256" />
+          <Property Name="RepeatVisitors" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'LFGuestSystem.dbo.HistoricalWeather' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HistoricalWeather">
+          <Property Name="Date" Type="date" />
+          <Property Name="Temp_F" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="WeatherDesc" Type="varchar" MaxLength="256" />
+        </EntityType>-->
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="64" />
+          <Property Name="LastName" Type="varchar" MaxLength="64" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Street" Type="varchar" MaxLength="64" />
+          <Property Name="City" Type="varchar" MaxLength="64" />
+          <Property Name="State" Type="varchar" MaxLength="8" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="Phone" Type="varchar" MaxLength="16" />
+          <Property Name="Email" Type="varchar" MaxLength="64" />
+          <Property Name="UserName" Type="varchar" MaxLength="16" />
+          <Property Name="Password" Type="varchar" MaxLength="64" />
+          <Property Name="Key" Type="varchar" MaxLength="16" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblError_Log">
+          <Key>
+            <PropertyRef Name="ErrorID" />
+          </Key>
+          <Property Name="ErrorID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblEvent">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="MealCount" Type="int" />
+          <Property Name="VolunteerCount" Type="int" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="WeatherDesc" Type="varchar" MaxLength="64" />
+          <Property Name="Temp" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="ChildTray" Type="int" />
+          <Property Name="AdultTray" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Comments" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="tblEvents_Employee">
+          <Key>
+            <PropertyRef Name="EventEmpID" />
+          </Key>
+          <Property Name="EventEmpID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblGuest">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="8" />
+          <Property Name="AgeGroup" Type="varchar" MaxLength="8" />
+          <Property Name="City" Type="varchar" MaxLength="64" />
+          <Property Name="Ethnicity" Type="varchar" MaxLength="64" />
+          <Property Name="RepeatVisitor" Type="tinyint" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="RoleID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="tblSite">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="SiteName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="LFGuestSystemModelStoreContainer">
+          <EntitySet Name="HistoricalData" EntityType="Self.HistoricalData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblError_Log" EntityType="Self.tblError_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvent" EntityType="Self.tblEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvents_Employee" EntityType="Self.tblEvents_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGuest" EntityType="Self.tblGuest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReport" EntityType="Self.tblReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSite" EntityType="Self.tblSite" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LFGuestSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LFGuestSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HistoricalDatas" EntityType="LFGuestSystemModel.HistoricalData" />
+          <EntitySet Name="tblEmployees" EntityType="LFGuestSystemModel.tblEmployee" />
+          <EntitySet Name="tblError_Log" EntityType="LFGuestSystemModel.tblError_Log" />
+          <EntitySet Name="tblEvents" EntityType="LFGuestSystemModel.tblEvent" />
+          <EntitySet Name="tblEvents_Employee" EntityType="LFGuestSystemModel.tblEvents_Employee" />
+          <EntitySet Name="tblGuests" EntityType="LFGuestSystemModel.tblGuest" />
+          <EntitySet Name="tblReports" EntityType="LFGuestSystemModel.tblReport" />
+          <EntitySet Name="tblRoles" EntityType="LFGuestSystemModel.tblRole" />
+          <EntitySet Name="tblSites" EntityType="LFGuestSystemModel.tblSite" />
+        </EntityContainer>
+        <EntityType Name="HistoricalData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Meals" Type="Int32" />
+          <Property Name="Guests" Type="Int32" />
+          <Property Name="Male" Type="Int32" />
+          <Property Name="Female" Type="Int32" />
+          <Property Name="Children" Type="Int32" />
+          <Property Name="Seniors" Type="Int32" />
+          <Property Name="NativeAm" Type="Int32" />
+          <Property Name="Hispanic" Type="Int32" />
+          <Property Name="AfricanAm" Type="Int32" />
+          <Property Name="White" Type="Int32" />
+          <Property Name="AsianAm" Type="Int32" />
+          <Property Name="Unspecified" Type="Int32" />
+          <Property Name="Appleton" Type="Int32" />
+          <Property Name="Menasha" Type="Int32" />
+          <Property Name="Kimberly" Type="Int32" />
+          <Property Name="Kaukauna" Type="Int32" />
+          <Property Name="LtChute" Type="Int32" />
+          <Property Name="Neenah" Type="Int32" />
+          <Property Name="Other" Type="Int32" />
+          <Property Name="Weather" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Adult" Type="Int32" />
+          <Property Name="Temp_F" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="SiteID" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="RepeatVisitors" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Street" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Key" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblError_Log">
+          <Key>
+            <PropertyRef Name="ErrorID" />
+          </Key>
+          <Property Name="ErrorID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblEvent">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MealCount" Type="Int32" />
+          <Property Name="VolunteerCount" Type="Int32" />
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="WeatherDesc" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Temp" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ChildTray" Type="Int32" />
+          <Property Name="AdultTray" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Comments" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblEvents_Employee">
+          <Key>
+            <PropertyRef Name="EventEmpID" />
+          </Key>
+          <Property Name="EventEmpID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblGuest">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="AgeGroup" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Ethnicity" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="RepeatVisitor" Type="Byte" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblSite">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="SiteName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LFGuestSystemModelStoreContainer" CdmEntityContainer="LFGuestSystemEntities">
+          <EntitySetMapping Name="HistoricalDatas">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.HistoricalData">
+              <MappingFragment StoreEntitySet="HistoricalData">
+                <ScalarProperty Name="RepeatVisitors" ColumnName="RepeatVisitors" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Temp_F" ColumnName="Temp_F" />
+                <ScalarProperty Name="Adult" ColumnName="Adult" />
+                <ScalarProperty Name="Weather" ColumnName="Weather" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="Neenah" ColumnName="Neenah" />
+                <ScalarProperty Name="LtChute" ColumnName="LtChute" />
+                <ScalarProperty Name="Kaukauna" ColumnName="Kaukauna" />
+                <ScalarProperty Name="Kimberly" ColumnName="Kimberly" />
+                <ScalarProperty Name="Menasha" ColumnName="Menasha" />
+                <ScalarProperty Name="Appleton" ColumnName="Appleton" />
+                <ScalarProperty Name="Unspecified" ColumnName="Unspecified" />
+                <ScalarProperty Name="AsianAm" ColumnName="AsianAm" />
+                <ScalarProperty Name="White" ColumnName="White" />
+                <ScalarProperty Name="AfricanAm" ColumnName="AfricanAm" />
+                <ScalarProperty Name="Hispanic" ColumnName="Hispanic" />
+                <ScalarProperty Name="NativeAm" ColumnName="NativeAm" />
+                <ScalarProperty Name="Seniors" ColumnName="Seniors" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="Female" ColumnName="Female" />
+                <ScalarProperty Name="Male" ColumnName="Male" />
+                <ScalarProperty Name="Guests" ColumnName="Guests" />
+                <ScalarProperty Name="Meals" ColumnName="Meals" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployees">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblEmployee">
+              <MappingFragment StoreEntitySet="tblEmployee">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblError_Log">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblError_Log">
+              <MappingFragment StoreEntitySet="tblError_Log">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ErrorID" ColumnName="ErrorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEvents">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblEvent">
+              <MappingFragment StoreEntitySet="tblEvent">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AdultTray" ColumnName="AdultTray" />
+                <ScalarProperty Name="ChildTray" ColumnName="ChildTray" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+                <ScalarProperty Name="WeatherDesc" ColumnName="WeatherDesc" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="VolunteerCount" ColumnName="VolunteerCount" />
+                <ScalarProperty Name="MealCount" ColumnName="MealCount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEvents_Employee">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblEvents_Employee">
+              <MappingFragment StoreEntitySet="tblEvents_Employee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventEmpID" ColumnName="EventEmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGuests">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblGuest">
+              <MappingFragment StoreEntitySet="tblGuest">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="RepeatVisitor" ColumnName="RepeatVisitor" />
+                <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AgeGroup" ColumnName="AgeGroup" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReports">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblReport">
+              <MappingFragment StoreEntitySet="tblReport">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRole">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSites">
+            <EntityTypeMapping TypeName="LFGuestSystemModel.tblSite">
+              <MappingFragment StoreEntitySet="tblSite">
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

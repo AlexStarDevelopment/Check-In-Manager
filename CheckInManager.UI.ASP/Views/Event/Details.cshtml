@@ -1,0 +1,64 @@
+﻿@model CheckInManager.BL.CEvents
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    dt {
+        font-size: 14px;
+    }
+
+    dd {
+        font-size: 14px;
+    }
+
+    .yoda{
+        padding:0 55px;
+    }
+    .gremlin{
+        padding:0 10px;
+    }
+</style>
+<p class="text-danger">@ViewBag.Error</p>
+<h2>Event Details</h2>
+<p class="form-group col-md-10 ">
+    @Html.ActionLink("< back", "Index", "Event", new { @class = "button is-text" })
+</p>
+<div class="container">
+    <hr />
+    <div class="form-group col-md-10">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Date):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SiteName):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SiteName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Comments):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Comments)
+            </dd>
+        </dl>
+    </div>
+
+
+
+
+    <div class="form-group col-md-10 ">
+        @Html.ActionLink("Start", "AddGuest", "Guest", new { id = Model.EventID }, new { @class = "button is-primary is-small yoda" })
+        @Html.ActionLink("Stop", "Close", "Event", new { id = Model.EventID }, new { @class = "button is-danger is-small gremlin" })
+    </div>
+
+</div>

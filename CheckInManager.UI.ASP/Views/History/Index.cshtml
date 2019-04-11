@@ -1,0 +1,70 @@
+﻿@model CheckInManager.UI.ASP.Models.SelectRange
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <style>
+        .yoda{
+            padding:0 55px;
+        }
+        .gremlin{
+            padding:0 10px;
+        }
+    </style>
+}
+    <p class="text-danger">@ViewBag.Error</p>
+<h2>Historical Data</h2>
+
+@using (Html.BeginForm("DataExport", "History"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h7>select a date range or @Html.ActionLink("view all data", "HistoryList", "History")</h7>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SiteID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SiteID, new SelectList(Model.ListofSites, "SiteID", "SiteName", Model.SiteID))
+                @Html.ValidationMessageFor(model => model.SiteID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Clear", "Index", "History", new { @class = "button is-primary is-inverted is-small gremlin" })
+                <script> if (@Model.EndDate == null || @Model.StartDate == null) {
+                                
+                            }
+                </script>
+                <input type="submit" value="Next" class="button is-primary is-small yoda" />
+
+            </div>
+        </div>
+    </div>
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

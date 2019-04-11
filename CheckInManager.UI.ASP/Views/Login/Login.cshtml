@@ -1,0 +1,103 @@
+﻿@model CheckInManager.BL.CEmployees
+
+@{
+    /**/
+
+    ViewBag.Title = "Login";
+    ViewBag.Message = "";
+    Layout = null;
+    //ViewBag.ReturnUrl = "../Home/Index";
+
+
+
+<!-- Bootstrap core CSS-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+
+<link href="~/Content/css/bootstrap.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+@*<link href="~/Content/css/font-awesome.min.css" rel="stylesheet" type="text/css">*@
+<!-- Page level plugin CSS-->
+<link href="~/Content/css/dataTables.bootstrap4.css" rel="stylesheet">
+<!-- Custom styles for this template-->
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<script src="~/Content/js/jquery/jquery.min.js"></script>
+<script src="~/Content/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="~/Content/js/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="~/Content/js/chart.js/Chart.min.js"></script>
+<script src="~/Content/js/datatables/jquery.dataTables.js"></script>
+<script src="~/Content/js/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="~/Content/js/sb-admin.min.js"></script>
+<!-- Custom scripts for this page-->
+<script src="~/Content/js/admin.min.js"></script>
+<script src="~/Content/js/sb-admin-datatables.min.js"></script>
+<script src="~/Content/js/sb-admin-charts.min.js"></script>
+<head>
+    <style>
+ html{
+     background-color:transparent;
+ }
+        .card-login {
+            width: 400px;
+            margin-top:10%;
+        }
+    </style>
+</head>
+    }
+<p class="text-danger"><h4>@ViewBag.Message</h4></p>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card-body">
+            <div class="form-group">
+                <div class="field">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "d-block small mt-3" })
+                    <p class="control has-icons-left has-icons-right">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control input" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="field">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "d-block small mt-3" })
+                    <p class="control has-icons-left">
+                        @Html.PasswordFor(Model => Model.Password, new { @class = "form-control input" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="button is-success btn-block" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+

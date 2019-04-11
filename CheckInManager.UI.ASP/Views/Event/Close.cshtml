@@ -1,0 +1,77 @@
+﻿@model CheckInManager.BL.CEvents
+
+@{
+    ViewBag.Title = "Close";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p class="text-danger">@ViewBag.Error</p>
+<h2>Close Event</h2>
+<div>
+    @Html.ActionLink("< back", "Index")
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model=> model.EventID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VolunteerCount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VolunteerCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VolunteerCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChildTray, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChildTray, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChildTray, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdultTray, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdultTray, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdultTray, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-8 offset-4">
+            <div class="col-md-6">
+                <input type="submit" id="btn-submit" value="Save" class="button is-primary is-small" Onclick="javascript: return SubmitForm();" />
+
+                <script>
+                                function SubmitForm() {
+
+                                    var r = confirm("Are you sure you want to submit?");
+                                    if (r == false) {
+                                        return false;
+                                    }
+                                }
+                </script>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

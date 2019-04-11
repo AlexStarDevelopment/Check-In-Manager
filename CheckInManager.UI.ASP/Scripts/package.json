@@ -1,0 +1,39 @@
+{
+  "name": "knowledge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "file": "cp node_modules/uikit/dist/images/icons.svg assets/img/ & cp node_modules/jquery/dist/jquery.js assets/js/jquery.js",
+    "lint": "jshint src/js/*.js",
+    "uglify": "uglifyjs node_modules/uikit/dist/js/uikit.js node_modules/devbridge-autocomplete/dist/jquery.autocomplete.js src/js/* -m -c -o assets/js/main.js",
+    "concat": "uglifyjs node_modules/uikit/dist/js/uikit.js node_modules/devbridge-autocomplete/dist/jquery.autocomplete.js src/js/* -b -o assets/js/main.js",
+    "less": "lessc src/less/main.less > assets/css/main.css",
+    "less:min": "lessc src/less/main.less > assets/css/main.css --clean-css",
+    "watch": "watch 'npm run dev' src/js/ src/less/",
+    "dev": "npm run file && npm run lint && npm run concat && npm run less",
+    "build": "npm run file && npm run lint && npm run uglify && npm run less:min"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chromjak/knowledge-html-template.git"
+  },
+  "author": "PressApps",
+  "devDependencies": {
+    "jshint": "latest",
+    "less": "latest",
+    "less-plugin-clean-css": "latest",
+    "uglify-js": "latest",
+    "watch": "latest"
+  },
+  "description": "Knowledge HTML Template",
+  "dependencies": {
+    "devbridge-autocomplete": "^1.3.0",
+    "jquery": "^3.1.1",
+    "uikit": "^3.0.0-beta.12"
+  },
+  "keywords": [
+    "helpdesk"
+  ],
+  "license": ""
+}

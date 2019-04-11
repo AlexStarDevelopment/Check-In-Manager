@@ -1,0 +1,273 @@
+﻿@model IEnumerable<CheckInManager.BL.CHistory>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+@{
+    /**/
+
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+
+    .pastevents{
+        line-height:30px;
+    }
+    .table {
+        background-color: white;
+    }
+
+    .breadcrumb {
+        font-size: 12px;
+        background-color: transparent;
+    }
+
+    thead {
+        border-collapse: collapse;
+        background-color: hsl(171, 100%, 41%);
+    }
+
+    #dataTable {
+        /*margin-left: 2%;
+        margin-right: 2%;*/
+        font-size: 12px;
+    }
+    th {
+        font-size: 14px;
+        font-weight: bold;
+        height: 40px;
+        
+    }
+    td {
+        height: 30px;
+       
+    }
+    th, td {
+        text-align: center;
+        
+    }
+    /*.table-responsive {
+        align-content: center;
+    }*/
+
+    .row.equal-height {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .row.equal-height > [class*='col-'] {
+            display: flex;
+            flex-direction: column;
+        }
+
+    .card {
+        flex: 1;
+        
+    }
+    .card-header{
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .card-group {
+        width: 100%;
+    }
+    #chartContainer {
+        height: 400px;
+    }
+</style>
+<script>
+window.onload = function () {
+
+var result = @Html.Raw(ViewBag.DataPoints);
+var dataPoints =[];
+for(var i = 0; i < result.length; i++){
+	dataPoints.push({x: new Date(result[i].Date), y:result[i].Guests});
+}
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        theme: "light2",
+        animationEnabled: true,
+   legend: {
+            verticalAlign: "bottom",
+            horizontalAlign: "center"
+        },
+    title: {
+        fontFamily: "arial",
+        text: "Guests in Last 6 Months",
+        titleFontSize: 12,
+    },
+    axisX: {
+        title: "Monthly",
+        titleFontSize: 12,
+        fontFamily: "arial",
+        titleFontWeight: "bold",
+        //labelFormatter: function (e) {
+        //    return CanvasJS.formatDate(e.value, "DD MMM YY");
+        //},
+        //labelAngle: -20,
+        interval: 1,
+        intervalType: "month",
+    },
+    axisY: {
+        title: "Guests",
+        fontFamily: "arial",
+        titleFontSize: 12,
+        titleFontWeight: "bold",
+    },
+    data: [
+        {
+            fontFamily: "arial",
+            type: "column",
+            xValueType: "dateTime",
+            dataPoints: dataPoints,
+
+
+    }
+    ]
+});
+chart.render();
+
+};
+</script>
+
+<body>
+    @*<div class="container">
+         Breadcrumbs
+        <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+
+            <ul>
+                <li><a href="#" style="line-height:20px;">Dashboard</a></li>
+                <li class="is-active"><a href="#" aria-current="page" style="line-height:20px;">My Dashboard</a></li>
+            </ul>
+            <a class="sharebuttons" style="width:20px; height:20px; margin:0; padding:0; vertical-align:top;" href="mailto:?Subject=Check this out!&amp;Body=My%20bar%20graph:%20http://checkinmanager.azurewebsites.net/Dashboard/Dashboard">
+                <img src="~/images/email.png" alt="Email" />
+            </a>
+            <a class="sharebuttons" style="width:22px; height:20px; margin:0; padding:0; padding-left:2px; vertical-align:top;" href="javascript:;" onclick="window.print()">
+                <img src="~/images/print.png" alt="Print" />
+            </a>
+
+        </nav>
+    </div>*@
+    <div class="container">
+        @*<div class="row equal-height">
+            <div class="col-12 col-md-4">
+                <div class="card mb-sm-4">
+                    <div class="card-header mb-md-2">Check-In Guests</div>
+
+                    </div>
+                </div>
+
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-sm-4">
+                    <div class="card-header mb-md-2">Create Reports</div>
+                    <input type="button" class="col-md-4"> <a href="@Url.Action("Guest", "AddGuest")">Guest Check-In</a>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card mb-sm-4">
+                    <div class="card-header mb-md-2">Manage Sites</div>
+                </div>
+            </div>
+            </div>*@
+            <div class="row equal-height">
+
+                <div class="col-12 col-md-4">
+                    <div class="card mb-sm-4">
+
+                        <div class="card-header mb-md-2"> <i class="fas fa-table"></i>&nbsp;Past Event Totals</div>
+
+
+
+                        <table class="table-responsive-md table-striped table-bordered mb-2 m-md-2" id="dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="align-middle text-center" scope="col">Event Date</th>
+                                    <th class="align-middle text-center" scope="col">Meals Served</th>
+                                    <th class="align-middle text-center" scope="col">Total Guests</th>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                <td class="align-middle text-justify">February 28, 2018</td>
+                                <td class="align-middle  text-center">132</td>
+                                <td class="align-middle  text-center">86</td>
+
+                            </tr>
+                            <tr>
+
+                                <td class="align-middle text-justify"> March 2, 2018</td>
+                                <td class="align-middle  text-center">92</td>
+                                <td class="align-middle  text-center">50</td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle  text-justify">March 5, 18</td>
+                                <td class="align-middle  text-center">134</td>
+                                <td class="align-middle text-center">75</td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle  text-justify"> March 7, 2018</td>
+                                <td class="align-middle  text-center">104</td>
+                                <td class="align-middle  text-center">68</td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-justify">March 9, 2018</td>
+                                <td class="align-middle  text-center">98</td>
+                                <td class="align-middle  text-center">61</td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle  text-justify">March 12, 2018</td>
+                                <td class="align-middle  text-center">125</td>
+                                <td class="align-middle  text-center">67</td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-justify">March 14, 2018</td>
+                                <td class="align-middle  text-center">112</td>
+                                <td class="align-middle text-center">71</td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-justify">March 19, 2018</td>
+                                <td class="align-middle text-center">93</td>
+                                <td class="align-middle text-center">67</td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-justify">March 21, 2018</td>
+                                <td class="align-middle text-center">143</td>
+                                <td class="align-middle text-center">71</td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-justify">March 23, 2018</td>
+                                <td class="align-middle text-center">92</td>
+                                <td class="align-middle text-center">61</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <div class="card mb-sm-4">
+
+                        <div class="card-header mb-md-2"><i class="fas fa-chart-bar" aria-hidden="true"></i>&nbsp; Event Data </div>
+
+
+
+
+                        <div id="chartContainer" style="height: 350px; width: 100%;"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</body>

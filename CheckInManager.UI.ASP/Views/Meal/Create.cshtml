@@ -1,0 +1,77 @@
+﻿@model CheckInManager.BL.CEvents
+
+@{
+    ViewBag.Title = "Log Meals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <div class="col-12">
+        <h4 class="text-center">Log Meal</h4>
+    </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group col-8 offset-4">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-6">
+
+                <input class="form-control input-md" type="date" value="2018-03-08" id="example-date-input">
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group col-8 offset-4">
+            <label class="control-label col-md-8" for="MealCount">Meal Count</label>
+            @Html.LabelFor(model => model.MealCount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.MealCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MealCount, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group col-8 offset-4">
+            <label class="control-label col-md-8" for="ChildTray">Child Tray Count</label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ChildTray, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChildTray, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-8 offset-4">
+            <label class="control-label col-md-8" for="AdultTray">Adult Tray Count</label>
+            @*@Html.LabelFor(model => model.AdultTray, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.AdultTray, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdultTray, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group col-8 offset-4">
+            <div class="col-md-6">
+                <input type="submit" id="btn-submit" value="Log Meal" class="btn btn-primary btn-block" Onclick="javascript: return SubmitForm();" />
+                <script>
+                    function SubmitForm() {
+
+                        var r = confirm("Are you sure you want to submit?");
+                        if (r == false) {
+                            return false;
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+
+    </div>
+    }
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

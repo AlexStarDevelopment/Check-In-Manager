@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "gulpfile.es5.js",
+    "inputFile": "gulpfile.js"
+  },
+  {
+    "outputFile": "Content/scss/main1.css",
+    "inputFile": "Content/scss/main1.scss"
+  }
+]

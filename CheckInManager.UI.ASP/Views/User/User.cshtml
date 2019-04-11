@@ -1,0 +1,80 @@
+﻿<!-- Bootstrap core CSS-->
+<link href="~/Content/css/bootstrap.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="~/Content/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- Page level plugin CSS-->
+<link href="~/Content/css/dataTables.bootstrap4.css" rel="stylesheet">
+<!-- Custom styles for this template-->
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="~/Content/js/jquery/jquery.min.js"></script>
+<script src="~/Content/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="~/Content/js/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="~/Content/js/chart.js/Chart.min.js"></script>
+<script src="~/Content/js/datatables/jquery.dataTables.js"></script>
+<script src="~/Content/js/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="~/Content/js/sb-admin.min.js"></script>
+<!-- Custom scripts for this page-->
+<script src="~/Content/js/admin.min.js"></script>
+<script src="~/Content/js/sb-admin-datatables.min.js"></script>
+<script src="~/Content/js/sb-admin-charts.min.js"></script>
+
+@{
+    ViewBag.Title = "User";
+}
+
+<p class="text-danger"><h3>@ViewBag.Message</h3></p>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">Create User</div>
+        <div class="card-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="FirstName">First Name</label>
+                        <input class="form-control" id="FirstName" name="FirstName" type="text" aria-describedby="nameHelp" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="LastName">Last Name</label>
+                        <input class="form-control" id="LastName" name="LastName" type="text" aria-describedby="nameHelp" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input class="form-control" id="Email" name="Email" type="email" aria-describedby="emailHelp" placeholder="youremail@server.com">
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="UserName">Username</label>
+                        <input class="form-control" id="UserName" name="UserName" type="text" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Password">Password</label>
+                        <input class="form-control" id="Password" name="Password" type="password" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Button -->
+            <input type="submit" value="Register" class="btn btn-primary btn-block" />
+            <div class="text-center">
+                <a class="d-block small mt-3" href="../Login/Login">Login Page</a>
+                @*<a class="d-block small" href="forgot-password.html">Forgot Password?</a>*@
+            </div>
+        </div>
+    </div>
+    </div>
+    
+}
+
+

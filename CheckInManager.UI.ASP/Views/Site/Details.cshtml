@@ -1,0 +1,60 @@
+﻿@model CheckInManager.BL.CSite
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for @Html.DisplayFor(model => model.SiteName)</h2>
+<p>
+    @Html.ActionLink("< back", "Index", "Site", new { @class = "button is-text" })
+</p>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiteName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Edit", "Edit", "Site", new{ id = Model.SiteID }, new{ @class = "button is-primary is-small" }) 
+    
+</p>

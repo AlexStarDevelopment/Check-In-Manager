@@ -1,0 +1,172 @@
+﻿
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.hero-header{
+    padding-top:35px;
+}
+
+.title{
+    font-size:80px;
+}
+
+.start{
+    padding:0 45px 0 45px;
+    font-weight:900;
+}
+
+.submitbutton{
+    margin-top:50px;
+}
+
+button.end {
+    padding: 0 45px 0 45px;
+    font-weight: 900;
+    z-index:1;
+    position:absolute;
+}
+
+p.showdate{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+#para1{
+    font-family: "Lato", sans-serif;
+    font-style:normal;
+}
+
+#Gender {
+    background-color: white;
+}
+
+#Age {
+    background-color: white;
+}
+
+#Ethnicity {
+    background-color: white;
+}
+
+#City {
+    background-color: white;
+}
+
+#Repeat{
+    background-color:white;
+}
+
+.navbar-toggler {
+    color:dimgray;
+    outline:none;
+    border:none;
+}
+
+.navbar-toggler-icon{
+    color:black;
+}
+
+.nav-item{
+    margin-left:5px;
+    padding:10px;
+}
+
+.nav-link {
+    font-family: "Lato", sans-serif;
+}
+
+span.navbar-toggler-icon{
+    color:black;
+}
+
+.navbar-toggler:hover{
+    outline:none;
+}
+
+.navbar-toggler:focus{
+    outline:none;
+
+}
+
+div.navbar-menu{
+    background-color: transparent;
+}
+
+div.navbar-collapse {
+    background-color: transparent;
+}
+
+div.navbar-end{
+    background-color:transparent;
+}
+
+h1.heading {
+    position: absolute;
+    bottom:0;
+    padding-bottom:40px;
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+.radio-group {
+    position: relative;
+    margin:0;
+    width:100%;
+    padding:0;
+}
+
+.radio {
+    width: 145px;
+    height: 145px;
+    border-radius: 100%;
+    background-color: transparent;
+    border: 2px solid;
+    cursor: pointer;
+    margin: auto;
+    overflow:hidden;
+}
+
+.radio:hover {
+    opacity:.5;
+}
+
+img#icons{
+    width:100%;
+    height:auto;
+    margin:0;
+    padding:0;
+}
+
+h2.radio-title{
+    margin:0;
+}
+
+.hidden{
+    display:none;
+}
+
+
+/*.hide {
+    animation-duration: 1s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-bottom: 0%;
+    }
+
+    to {
+        margin-bottom: 600%;
+    }
+}*/
+
+
+
+
+
+
+

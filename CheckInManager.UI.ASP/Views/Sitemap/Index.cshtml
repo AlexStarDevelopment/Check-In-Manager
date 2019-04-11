@@ -1,0 +1,80 @@
+﻿
+@*@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Bootstrap core CSS-->
+<link href="~/Content/css/bootstrap.css" rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="~/Content/sb-admin.css" rel="stylesheet">
+<link href="~/Content/Site.css" rel="stylesheet">
+<link href="~/Content/css/main1.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+
+
+<!-- Page level plugin CSS-->
+<link href="~/Content/css/dataTables.bootstrap4.css" rel="stylesheet">
+<!-- Custom styles for this template-->
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="~/Content/js/jquery/jquery.min.js"></script>
+<script src="~/Content/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="~/Content/js/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="~/Content/js/chart.js/Chart.min.js"></script>
+<script src="~/Content/js/datatables/jquery.dataTables.js"></script>
+<script src="~/Content/js/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="~/Content/js/sb-admin.min.js"></script>
+<!-- Custom scripts for this page-->
+<script src="~/Content/js/admin.min.js"></script>
+<script src="~/Content/js/sb-admin-datatables.min.js"></script>
+<script src="~/Content/js/sb-admin-charts.min.js"></script>*@
+
+
+
+<div class="container sitenav">
+    <div class="col-12 ">
+        <div class="row">
+            <div class="col">
+                <section id="sec1">
+                    <h4><span class="sitemapheading">User Management</span></h4>
+                    <a class="nav-link site" a href="@Url.Action("Dashboard", "Dashboard")">Dashboard</a>
+                    <a class="nav-link site" a href="@Url.Action("Login", "Login")">Login</a>
+                    <a class="nav-link site" href="@Url.Action("Index","Employee")">Employees</a>
+                </section>
+                </div>
+
+                <div class="col">
+                    <section id="sec2">
+                        <h4><span class="sitemapheading">Reports</span></h4>
+                           <a class="nav-link site " a href="@Url.Action("Dashboard", "Dashboard")">Quarterly Reports</a>
+                        <a class="nav-link site " a href="@Url.Action("Dashboard", "Dashboard")">Yearly Report</a>
+                        <a class="nav-link site" href="@Url.Action("Dashboard","Dashboard")">Employee Report</a>
+                    </section>
+                </div>
+
+                <div class="col">
+                    <section id="sec3">
+                        <h4><span class="sitemapheading">Reporting Tools</span></h4>
+                        <a class="nav-link " a href="@Url.Action("AddGuest", "Guest")">Check-in Suite</a>
+                        <a class="nav-link" a href="@Url.Action("Index", "Events")">Events</a>
+                        <a class="nav-link" a href="@Url.Action("Index", "Sites")">Locations</a>
+                    </section>
+                </div>
+
+                <div class="col">
+                    <section id="sec4">
+                        <h4><span class="sitemapheading text-left">Company Information</span></h4>
+                        <a class="nav-link " a href="@Url.Action("Index", "Home")">About</a>
+                        <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- /container -->

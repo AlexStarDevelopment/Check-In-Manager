@@ -1,0 +1,240 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Check-in Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/vendors/fontawesome/css/font-awesome.min.css">
+    <!-- Simple Line Font -->
+    <link rel="stylesheet" href="~/Content/vendors/simple-line-icons/css/simple-line-icons.css">
+    <!-- Pe-icon Font -->
+    <link rel="stylesheet" href="~/Content/vendors/pe-icon/css/helper.css">
+    <link rel="stylesheet" href="~/Content/vendors/pe-icon/css/pe-icon-7-stroke.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/vendors/bootstrap/css/bootstrap.min.css">
+    <!-- Main css -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <style>
+            #share-buttons img {
+                width: 35px;
+                padding: 5px;
+                border: 0;
+                box-shadow: 0;
+                display: inline;
+                outline: none;
+  
+            }
+
+                #share-buttons img:hover {
+                    border: 1px solid darkgray;
+                    border-radius:50px;
+                    -webkit-animation-name: grow; /* Safari 4.0 - 8.0 */
+                    -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
+                    animation-name: grow;
+                    animation-duration: .5s;
+                }
+
+        a.sharebuttons {
+            text-decoration: none;
+        }
+
+        section{
+            height: 350px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="preloader" id="preloader">
+        <svg class="spinner" id="pageloader_anime" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+    </div>
+    <!--===================== Header =====================-->
+    <!-- Nav Menu -->
+    <div class="menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="#" style="font-size:28px; line-height:40px; vertical-align:middle;"><img src="../images/logo3.svg" style="width:40px; height:auto;" class="img-fluid"> &nbsp;Check-in Manager</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active"> <a class="nav-link" href="#" style="padding:5px 0;">HOME <span class="sr-only">(current)</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#contactus" style="padding:5px 0;">CONTACT</a> </li>
+                                <li class="nav-item login"> <a id="login" class="login nav-link button is-primary is-outlined" style="padding:5px 10px;" href="@Url.Action("Login", "Login")">LOGIN</a> </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//End Header -->
+    <!--===================== Sticky parallax Header =====================-->
+    <section class="light-bg center-block sticky-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>It's check-in time!</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid"><img src="~/Content/images/sticky-header-bg.png" class="img-fluid stick-icons-bg" alt="#"> </div>
+    </section>
+    <div class="sticky-slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="deatiled-phone-wrap sticky-level">
+                        <img src="~/Content/images/desktop.png" class="img-fluid">
+                        <div class="screen">
+                            <div class="screen-slider">
+                                <div class="item"><img src="~/Content/images/screen1.jpg" alt="#"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//End Sticky parallax Header -->
+    <div class="container" id="sticky-parent">
+        <div class="row">
+            <div class="col-12 col-lg-8 d-none d-lg-block">
+                <div class="sticky-phone-wrap" data-0="top:150%;" data-0-top-top="top:10%;" data-100-bottom-bottom="top:10%;" data-0-top-bottom="top:-150%;" data-anchor-target="#scroll-box">
+                    <img src="~/Content/images/desktop-sticky.png" class="phone">
+                    <div class="screen" data-0-top-top="opacity:1;" data-0-top-bottom="opacity:0;" data-anchor-target="#slide1"><img src="~/Content/images/screen2.jpg"></div>
+                    <div class="screen" data-0-bottom-top="opacity:0;" data-50-center-top="opacity:1;" data--200-top-top="opacity:1;" data-0-top-bottom="opacity:0;" data-anchor-target="#slide2"><img src="~/Content/images/screen3.jpg"> </div>
+                    <div class="screen" data-0-bottom-top="opacity:0;" data-50-center-top="opacity:1;" data--200-top-top="opacity:1;" data-0-top-bottom="opacity:0;" data-anchor-target="#slide3">  <img src="~/Content/images/screen4.jpg">  </div>
+                    <div class="screen" data-0-bottom-top="opacity:0;" data-50-center-top="opacity:1;" data-anchor-target="#slide4"><img src="~/Content/images/screen5.jpg"></div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="scroll-box" id="scroll-box">
+                    <div class="spacer d-none d-lg-block"> </div>
+                    <!-- // end .spacer -->
+                    <div class="content d-flex align-items-center" id="slide1">
+                        <div class="featured1-wrap sticky-content">
+                            <i class="pe-primary pe-7s-science" style="color:#09E4A0;" aria-hidden="true"></i>
+                            <h2 class="mt-3 mb-3">Checking clients in has never been so easy.</h2>
+                            <p>Get clients in the door and checked-in fast so everyone can focus on what's most important. </p>
+                        </div>
+                    </div>
+                    <div class="content d-flex align-items-center" id="slide2">
+                        <div class="featured1-wrap sticky-content">
+                            <i class="pe-primary pe-7s-diamond" style="color:#09E4A0;" aria-hidden="true"></i>
+                            <h2 class="mt-3 mb-3">Perfectly Simple.</h2>
+                            <p>So simple, your clients can check-in themselves. Requires no training and has no learning curve. Designed for ease of use with everyone in mind.</p>
+                        </div>
+                    </div>
+                    <div class="content d-flex align-items-center" id="slide3">
+                        <div class="featured1-wrap sticky-content">
+                            <i class="pe-primary pe-7s-edit" style="color:#09E4A0;" aria-hidden="true"></i>
+                            <h2 class="mt-3 mb-3">Customization.</h2>
+                            <p>Create customized questions and result sets to fit your business needs. </p>
+                        </div>
+                    </div>
+                    <div class="content d-flex align-items-center" id="slide4">
+                        <div class="featured1-wrap sticky-content">
+                            <i class="pe-primary pe-7s-like" style="color:#09E4A0;" aria-hidden="true"></i>
+                            <h2 class="mt-3 mb-3">Simplicity your clients will appreciate.</h2>
+                            <p>No unnecessary bells and whistles slowing you or your clients down. </p>
+                        </div>
+                    </div>
+                    <div class="spacer d-none d-lg-block"> </div>
+                </div>
+                <!-- XXXXXXXXXXXXXXXXXXXXXXXX End Scroll Box XXXXXXXXXXXXXXXXXXXXXXXX -->
+            </div>
+        </div>
+    </div>
+    <!--//End Sticky parallax Left -->
+    <!--===================== variation =====================-->
+    <section class="space light-bg">
+        <div class="container" id="contactus">
+            <div class="row justify-content-center">
+                <div class="col-md-8 center-block">
+                    <h2 class="mb-4">Questions? </h2>
+                    <a class="button is-primary is-large" style="width:200px;  letter-spacing:-1px; color:white; font-weight:300;" href="mailto:checkinmanagersoftware@gmail.com?Subject=Your Software Rocks!&amp;">
+                        <span class="icon is-large"><img src="../images/envelope.svg" style="width:45px; height:auto;" class="img-fluid m-2" alt="#"></span>
+                        <span>&nbsp;Contact us</span>
+                    </a>
+                        <div id="share-buttons" style="padding-top:40%;">
+                            <!-- Facebook -->
+                            <a class="sharebuttons" href="http://www.facebook.com/sharer.php?u=http://checkinmanager.azurewebsites.net" target="_blank">
+                                <img src="~/images/facebook.png" alt="Facebook" />
+                            </a>
+
+                            <!-- Google+ -->
+                            <a class="sharebuttons" href="https://plus.google.com/share?url=http://checkinmanager.azurewebsites.net" target="_blank">
+                                <img src="~/images/google.png" alt="Google" />
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a class="sharebuttons" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://checkinmanager.azurewebsites.net" target="_blank">
+                                <img src="~/images/linkedin.png" alt="LinkedIn" />
+                            </a>
+
+                            <!-- Pinterest -->
+                            <a class="sharebuttons" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+                                <img src="~/images/pinterest.png" alt="Pinterest" />
+                            </a>
+
+                            <!-- Print -->
+                            <a class="sharebuttons" href="javascript:;" onclick="window.print()">
+                                <img src="~/images/print.png" alt="Print" />
+                            </a>
+
+                            <!-- Tumblr-->
+                            <a class="sharebuttons" href="http://www.tumblr.com/share/link?url=http://checkinmanager.azurewebsites.net&amp;title=Simple Share Buttons" target="_blank">
+                                <img src="~/images/tumblr.png" alt="Tumblr" />
+                            </a>
+
+                            <!-- Twitter -->
+                            <a class="sharebuttons" href="https://twitter.com/share?url=http://checkinmanager.azurewebsites.net&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
+                                <img src="~/images/twitter.png" alt="Twitter" />
+                            </a>
+
+                            <!-- Email -->
+                            <a class="sharebuttons" href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://checkinmanager.azurewebsites.net">
+                                <img src="~/images/email.png" alt="Email" />
+                            </a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//End variation -->
+    <!--===================== footer =====================-->
+    <footer class="space">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 center-block">
+                    <p>Copyright © 2018. All rights reserved. Check-in Manager</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--//End footer -->
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="~/Content/vendors/jquery/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/vendors/bootstrap/js/popper.min.js"></script>
+    <script src="~/Content/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendors/skrollr/skrollr.min.js"></script>
+    <script src="~/Content/js/script.js"></script>
+</body>
+
+</html>

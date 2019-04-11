@@ -1,0 +1,88 @@
+﻿@model CheckInManager.UI.ASP.Models.EventsSites
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p class="text-danger">@ViewBag.Error</p>
+<h2>Update Event</h2>
+<div class="form-group col-8">
+        @Html.ActionLink("< back", "Index", "Event", new { @class = "button is-text" })
+</div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.NewEvent.EventID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NewEvent.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NewEvent.Date, new { htmlAttributes = new { @class = "form-control", @type = "datetime", @value = "Model.NewEvent.Date.ToString('MM / dd / yyyy hh:mm tt')" } })
+                        @Html.ValidationMessageFor(model => model.NewEvent.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NewEvent.SiteID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NewEvent.SiteID, new SelectList(Model.AllSites, "SiteID", "SiteName", Model.NewEvent))
+                        @Html.ValidationMessageFor(model => model.NewEvent.SiteID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NewEvent.VolunteerCount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NewEvent.VolunteerCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NewEvent.VolunteerCount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NewEvent.ChildTray, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NewEvent.ChildTray, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NewEvent.ChildTray, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NewEvent.AdultTray, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NewEvent.AdultTray, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NewEvent.AdultTray, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NewEvent.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NewEvent.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NewEvent.Comments, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-8">
+                        <input type="submit" id="btn-submit" value="Save" class="button is-primary is-small" Onclick="javascript: return SubmitForm();" />
+
+                        <script>
+                            function SubmitForm() {
+
+                                var r = confirm("Are you sure you want to submit?");
+                                if (r == false) {
+                                    return false;
+                                }
+                            }
+                        </script>
+                    </div>
+               
+            </div>
+        }
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

@@ -1,0 +1,82 @@
+﻿@model CheckInManager.BL.CSite
+
+@{
+    ViewBag.Title = "Edit";
+}
+<p class="text-danger">@ViewBag.Error</p>
+<h2>Editing @Html.DisplayFor(model => model.SiteName)</h2>
+
+<div class="form-group col-8">
+    @Html.ActionLink("< back", "Index", "Site", new { @class = "button is-text" })
+</div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.SiteID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SiteName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SiteName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SiteName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-8">
+                <input type="submit" id="btn-submit" value="Save" class="button is-primary is-small" Onclick="javascript: return SubmitForm();" />
+
+                <script>
+                    function SubmitForm() {
+
+                        var r = confirm("Are you sure you want to submit?");
+                        if (r == false) {
+                            return false;
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+
+    }
+
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

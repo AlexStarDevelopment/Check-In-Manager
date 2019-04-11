@@ -1,0 +1,191 @@
+﻿@model IEnumerable<CheckInManager.BL.CHistory>
+
+@{
+    ViewBag.Title = "HistoryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p class="text-danger">@ViewBag.Error</p>
+<h2>Historical Data</h2>
+
+<p>
+    <a class="button is-primary is-small" href="@Url.Action("CreateTally", "History")">Add Entry</a>
+</p>
+<table class="table table-responsive">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Meals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Male)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Female)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adult)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Children)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seniors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NativeAm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hispanic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AfricanAm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.White)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AsianAm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unspecified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appleton)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menasha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kimberly)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kaukauna)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LtChute)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Neenah)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Other)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weather)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Temp_F)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepeatVisitors)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "EditTally", new { id = item.Id }) 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guests)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Male)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Female)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adult)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Children)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seniors)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NativeAm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hispanic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AfricanAm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.White)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AsianAm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unspecified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appleton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Menasha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kimberly)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kaukauna)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LtChute)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Neenah)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Other)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weather)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temp_F)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RepeatVisitors)
+        </td>
+
+    </tr>
+}
+
+</table>
